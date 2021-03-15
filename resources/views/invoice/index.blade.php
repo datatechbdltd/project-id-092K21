@@ -292,7 +292,7 @@
                 phone: phone,
             }
         }
-        
+
         //makeInvoice
         function storeInvoice(){
             console.log(getInputs());
