@@ -40,7 +40,8 @@
                                     <div class="card m-b-30" onclick="addItem({{ $item->id }})">
                                         <img class="card-img-top" src="{{ asset('uploads/images/'.$item->image) }}" alt="Card image cap">
                                         <div class="card-body btn btn-info" >
-                                            <h5 class="card-title font-18" id="item-name-id-{{ $item->id }}">{{ $item->name }}</h5><span class="badge badge-pill badge-success" id="item-quantity-id-{{ $item->id }}"></span>
+                                            <h5 class="card-title font-18" id="item-name-id-{{ $item->id }}">{{ $item->name }}</h5>
+                                            <span class="badge badge-pill badge-success" id="item-quantity-id-{{ $item->id }}"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -219,6 +220,7 @@
                 }
             }
         }
+
         //Get Quantity Of Items
         function getQuantity() {
             $.getJSON('{{ url('/get-quantity') }}', function (data) {
@@ -229,6 +231,7 @@
             })
         }
         getQuantity();
+
         //Change
         function change(id){
             $("#item-id-unit-price-"+id ).autocomplete({
@@ -240,6 +243,7 @@
                 },
             });
         }
+
         //Auto total Calculation
         function totalPrice(){
             var records = document.getElementById('table-body').rows, i, total = 0, quantity, price;
@@ -250,6 +254,7 @@
             total = total.toFixed(2);
             document.getElementById('total-price').innerHTML = total;
         }
+
         //Invoice submit get data
         function getInputs() {
             var qty = [], ids = [], price = [], total_price, customer, phone;
@@ -270,6 +275,7 @@
                     price.push(parseFloat(records[i].cells[4].innerHTML))
                 }
             }
+
              //console.log(ids)
             var total_price     = parseFloat(document.getElementById("total-price").innerHTML)
             var customer        = document.getElementById("customer").value
@@ -286,6 +292,7 @@
                 phone: phone,
             }
         }
+        
         //makeInvoice
         function storeInvoice(){
             console.log(getInputs());
